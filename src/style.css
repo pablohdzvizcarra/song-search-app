@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'MyFont';
+  src: url(./fonts/DeerUp\ Shouttap\ Sans.otf);
+  font-weight: 600;
+  font-style: normal;
+}
+
+.hello {
+  color: red;
+  font-size: 2rem;
+  background: url('./img/code.jpg');
+  font-family: 'MyFont';
+  
+}
