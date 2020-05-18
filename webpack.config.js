@@ -1,18 +1,37 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  mode: 'production',
+  entry: {
+    index: './src/index.js',
+    interfaz: './src/interfaz.js',
+    api: './src/api.js',
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './dist'
+  },
+  plugins: [
+    new CleanWebpackPlugin( {cleanStaleWebpackAssets: false} ),
+    new HtmlWebpackPlugin({
+      title: 'Output Management',
+      template: 'src/index.hbs'
+    })
+  ],
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.s[ac]ss$/,
         use: [
           'style-loader',
           'css-loader',
+          'sass-loader'
         ],
       },
       {
